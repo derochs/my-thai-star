@@ -31,8 +31,8 @@ export interface Config {
 export const config: Config = {
   version: 'dev',
   backendType: BackendType.REST,
-  restPathRoot: 'http://localhost:8081/mythaistar/',
-  restServiceRoot: 'http://localhost:8081/mythaistar/services/rest/',
+  restPathRoot: 'http://localhost:8090/api/mythaistar/',
+  restServiceRoot: 'http://localhost:8090/api/mythaistar/services/rest/',
   loadExternalConfig: false, // load external configuration on /config endpoint
   pageSizes: [8, 16, 24],
   pageSizesDialog: [4, 8, 12],
