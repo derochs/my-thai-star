@@ -5,9 +5,10 @@ zuul:
       path: /api/**
       serviceId: api
     client:
-      sensitiveHeaders: 
-      path: /
+      sensitiveHeaders:
+      path: /**
       serviceId: client
+      stripPrefix: false
 
 ribbon:
   eureka:

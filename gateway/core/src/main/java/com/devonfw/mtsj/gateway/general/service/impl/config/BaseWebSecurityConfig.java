@@ -66,7 +66,7 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
   @Override
   public void configure(HttpSecurity http) throws Exception {
 
-    String[] unsecuredResources = new String[] { "/**" };
+    String[] unsecuredResources = new String[] { "**" };
 
     http
         //
@@ -75,7 +75,9 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
         .authorizeRequests().antMatchers(unsecuredResources).permitAll().anyRequest().authenticated().and()
 
         // activate crsf check for a selection of urls (but not for login & logout)
-        .csrf().requireCsrfProtectionMatcher(new CsrfRequestMatcher()).and()
+        //.csrf().requireCsrfProtectionMatcher(new CsrfRequestMatcher()).and()
+        // TODO: Temporarily disabled CSRF to allow POSTS
+        .csrf().disable()
 
         // configure parameters for simple form login (and logout)
         .formLogin().successHandler(new SimpleUrlAuthenticationSuccessHandler()).defaultSuccessUrl("/")
