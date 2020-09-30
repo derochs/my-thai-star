@@ -2,7 +2,19 @@ zuul:
   routes:
     api:
       path: /api/**
-      url: localhost:8081
+      serviceId: api
     client:
       path: /
-      url: localhost:4200
+      serviceId: client
+
+ribbon:
+  eureka:
+    enabled: false
+
+api:
+  ribbon:
+    listOfServers: localhost:8081
+
+client:
+  ribbon:
+    listOfServers: localhost:4200
