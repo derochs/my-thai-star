@@ -1,9 +1,11 @@
 zuul:
   routes:
     api:
+      sensitiveHeaders:
       path: /api/**
       serviceId: api
     client:
+      sensitiveHeaders: 
       path: /
       serviceId: client
 
