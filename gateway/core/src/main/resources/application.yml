@@ -1,0 +1,8 @@
+zuul:
+  routes:
+    api:
+      path: /api/**
+      url: localhost:8081
+    client:
+      path: /
+      url: localhost:4200

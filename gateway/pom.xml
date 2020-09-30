@@ -20,6 +20,7 @@
     <guava.version>28.1-jre</guava.version>
     <devonfw.test.excluded.groups>system</devonfw.test.excluded.groups>
     <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+
   </properties>
 
   <modules>
@@ -45,7 +46,7 @@
         <version>${junit.version}</version>
         <type>pom</type>
         <scope>import</scope>
-      </dependency>
+      </dependency>      
       <!-- Library with general utilities -->
       <dependency>
         <groupId>com.google.guava</groupId>
@@ -86,10 +87,6 @@
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
   </dependencies>
 
