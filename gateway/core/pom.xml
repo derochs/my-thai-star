@@ -156,6 +156,12 @@
       <artifactId>cglib</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt</artifactId>
+      <version>0.7.0</version>
+    </dependency>
+
     <!-- Enable JSON logging for easy integration with xPaaS and ELK/Graylog/Splunk/etc. -->
     <dependency>
       <groupId>net.logstash.logback</groupId>

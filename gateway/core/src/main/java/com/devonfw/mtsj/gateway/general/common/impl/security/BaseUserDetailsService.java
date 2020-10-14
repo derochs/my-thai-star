@@ -1,19 +1,17 @@
 package com.devonfw.mtsj.gateway.general.common.impl.security;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.devonfw.mtsj.gateway.general.common.api.security.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -38,9 +36,31 @@ public class BaseUserDetailsService implements UserDetailsService {
 
   private AccessControlProvider accessControlProvider;
 
+  /** Mock Userdata */
+
+  public ArrayList<UserDetails> fillUserList() {
+    ArrayList<UserDetails> users = new ArrayList<>();
+    users.add(new UserData("cook", "cook", Collections.singleton(new SimpleGrantedAuthority("ADMIN"))));
+    users.add(new UserData("user", "password", Collections.singleton(new SimpleGrantedAuthority("USER"))));
+    return users;
+  }
+
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+    ArrayList<UserDetails> userList = fillUserList();
+
+    for(UserDetails user : userList) {
+      if (user.getUsername().equals(username)){
+        return user;
+      }
+    }
+
+    UsernameNotFoundException exception = new UsernameNotFoundException("Authentication failed");
+    LOG.warn("Failed to get user {}.", username);
+    throw exception;
+
+    /*
     Set<GrantedAuthority> authorities = getAuthorities(username);
     UserDetails user;
     try {
@@ -53,6 +73,7 @@ public class BaseUserDetailsService implements UserDetailsService {
       LOG.warn("Failed to get user {}.", username, exception);
       throw exception;
     }
+    */
   }
 
   /**
