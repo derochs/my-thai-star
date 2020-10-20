@@ -11,6 +11,7 @@ zuul:
       stripPrefix: false
 
 ribbon:
+  ReadTimeout: 60000
   eureka:
     enabled: false
 
