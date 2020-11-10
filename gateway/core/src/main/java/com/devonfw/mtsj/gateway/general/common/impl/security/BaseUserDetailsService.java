@@ -26,7 +26,7 @@ import com.devonfw.module.security.common.base.accesscontrol.AccessControlGrante
  *
  * @see com.devonfw.mtsj.gateway.general.service.impl.config.BaseWebSecurityConfig
  */
-@Named
+//@Named
 public class BaseUserDetailsService implements UserDetailsService {
 
   /** Logger instance. */
@@ -42,6 +42,7 @@ public class BaseUserDetailsService implements UserDetailsService {
     ArrayList<UserDetails> users = new ArrayList<>();
     users.add(new UserData("cook", "cook", Collections.singleton(new SimpleGrantedAuthority("ADMIN"))));
     users.add(new UserData("user", "password", Collections.singleton(new SimpleGrantedAuthority("USER"))));
+    users.add(new UserData("waiter", "waiter", Collections.singleton(new SimpleGrantedAuthority("ROLE_Waiter"))));
     return users;
   }
 

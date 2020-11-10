@@ -59,12 +59,17 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
 
     String[] unsecuredResources = new String[] { "**" };
 
-    http.userDetailsService(this.userDetailsService).csrf().disable().exceptionHandling().and().sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-            .antMatchers(unsecuredResources).permitAll().antMatchers(HttpMethod.POST, "/login").permitAll().anyRequest()
+    http.userDetailsService(this.userDetailsService)
+            .csrf().disable()
+            .exceptionHandling()
+            .and().sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and().authorizeRequests()
+            .antMatchers(unsecuredResources).permitAll()
+            .antMatchers(HttpMethod.POST, "/api/mythaistar/login").permitAll().anyRequest()
             .authenticated().and()
             // login requests are filtered with JWTLoginFilter
-            .addFilterBefore(new JWTLoginFilter("/login", authenticationManager(), this.userDetailsService),
+            .addFilterBefore(new JWTLoginFilter("/api/mythaistar/login", authenticationManager(), this.userDetailsService),
                     UsernamePasswordAuthenticationFilter.class);
     if (this.corsEnabled) {
       http.addFilterBefore(getCorsFilter(), CsrfFilter.class);

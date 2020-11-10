@@ -1,5 +1,9 @@
 zuul:
   routes:
+    login:
+      sensitiveHeaders:
+      path: /api/mythaistar/login/**
+      serviceId: login
     api:
       sensitiveHeaders:
       path: /api/**
@@ -22,3 +26,7 @@ api:
 client:
   ribbon:
     listOfServers: localhost:4200
+
+login:
+  ribbon:
+    listOfServers: localhost:8090
