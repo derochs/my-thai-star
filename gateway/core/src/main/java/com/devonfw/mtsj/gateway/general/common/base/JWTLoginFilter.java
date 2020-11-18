@@ -46,6 +46,12 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             throws IOException, ServletException {
         TokenAuthenticationService.addAllowedHeader(response);
         TokenAuthenticationService.addAuthentication(response, authResult);
-        TokenAuthenticationService.addRequiredAuthentication(response, authResult);
+        //TokenAuthenticationService.addRequiredAuthentication(response, authResult);
+    }
+
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse res, AuthenticationException failed) {
+        LOG.info("Authentication was unsuccessful");
+        res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
     }
 }
