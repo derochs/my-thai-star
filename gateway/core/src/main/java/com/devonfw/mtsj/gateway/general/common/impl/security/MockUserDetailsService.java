@@ -16,14 +16,12 @@ public class MockUserDetailsService implements UserDetailsService {
 
     //In memory database
     private final ArrayList<UserDetails> USERS = new ArrayList<>(Arrays.asList(
-            new UserData("cook", "cook", Collections.
+            new UserData("cook","{noop}cook", Collections.
                     singleton(new SimpleGrantedAuthority("ROLE_Waiter"))),
-            new UserData("user", "password", Collections.
+            new UserData("user", "{noop}password", Collections.
                     singleton(new SimpleGrantedAuthority("ROLE_Customer"))),
-            new UserData("waiter", "waiter", Collections.
+            new UserData("waiter", "{noop}waiter", Collections.
                     singleton(new SimpleGrantedAuthority("ROLE_Waiter")))));
-
-    public MockUserDetailsService() {}
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
