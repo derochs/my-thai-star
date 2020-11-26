@@ -26,7 +26,7 @@ import com.devonfw.module.security.common.base.accesscontrol.AccessControlGrante
  *
  * @see com.devonfw.mtsj.gateway.general.service.impl.config.BaseWebSecurityConfig
  */
-@Named
+//@Named
 public class BaseUserDetailsService implements UserDetailsService {
 
   /** Logger instance. */

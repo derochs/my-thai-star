@@ -13,9 +13,9 @@ import com.devonfw.module.basic.common.api.config.SpringProfileConstants;
  * {@link com.devonfw.mtsj.gateway.general.service.impl.config.BaseWebSecurityConfig}
  *
  */
-@Configuration
-@EnableWebSecurity
-@Profile(SpringProfileConstants.NOT_JUNIT)
+//@Configuration
+//@EnableWebSecurity
+//@Profile(SpringProfileConstants.NOT_JUNIT)
 public class WebSecurityConfig extends BaseWebSecurityConfig {
 
 }

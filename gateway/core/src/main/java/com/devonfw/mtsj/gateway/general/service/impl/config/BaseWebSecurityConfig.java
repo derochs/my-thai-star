@@ -2,7 +2,6 @@ package com.devonfw.mtsj.gateway.general.service.impl.config;
 
 import javax.inject.Inject;
 
-import com.devonfw.mtsj.gateway.general.common.base.JWTLoginFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -62,10 +60,11 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
     http.userDetailsService(this.userDetailsService).csrf().disable().exceptionHandling().and().sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
             .antMatchers(unsecuredResources).permitAll().antMatchers(HttpMethod.POST, "/login").permitAll().anyRequest()
-            .authenticated().and()
+            .authenticated();
+            //.and()
             // login requests are filtered with JWTLoginFilter
-            .addFilterBefore(new JWTLoginFilter("/login", authenticationManager(), this.userDetailsService),
-                    UsernamePasswordAuthenticationFilter.class);
+            //.addFilterBefore(new JWTLoginFilter("/login", authenticationManager(), this.userDetailsService),
+            //.addFilterBefore(new HeaderFilter(),UsernamePasswordAuthenticationFilter.class);
     if (this.corsEnabled) {
       http.addFilterBefore(getCorsFilter(), CsrfFilter.class);
     }
