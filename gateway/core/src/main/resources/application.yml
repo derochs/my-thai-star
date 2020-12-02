@@ -9,10 +9,6 @@ zuul:
       path: /**
       serviceId: client
       stripPrefix: false
-    login:
-      sensitiveHeaders:
-      path: /api/mythaistar/login/**
-      serviceId: login
 
 ribbon:
   ReadTimeout: 60000
@@ -26,7 +22,3 @@ api:
 client:
   ribbon:
     listOfServers: localhost:4200
-
-login:
-  ribbon:
-    listOfServers: localhost:8090
