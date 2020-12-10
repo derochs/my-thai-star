@@ -62,10 +62,9 @@ public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter
     http.userDetailsService(this.userDetailsService).csrf().disable().exceptionHandling().and().sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
             .antMatchers(unsecuredResources).permitAll().antMatchers(HttpMethod.POST, "/login").permitAll().anyRequest()
-            .authenticated().and()
+            .authenticated();//.and()
             // login requests are filtered with JWTLoginFilter
-            .addFilterBefore(new JWTLoginFilter("/login", authenticationManager(), this.userDetailsService),
-                    UsernamePasswordAuthenticationFilter.class);
+            //.addFilterBefore(new JWTLoginFilter("/login", authenticationManager(), this.userDetailsService), UsernamePasswordAuthenticationFilter.class);
     if (this.corsEnabled) {
       http.addFilterBefore(getCorsFilter(), CsrfFilter.class);
     }

@@ -168,6 +168,13 @@
       <artifactId>logstash-logback-encoder</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>com.mashape.unirest</groupId>
+      <artifactId>unirest-java</artifactId>
+      <version>1.4.9</version>
+    </dependency>
+
+
     <!-- Tests -->
     <dependency>
       <groupId>com.devonfw.java.modules</groupId>
